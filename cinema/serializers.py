@@ -13,7 +13,13 @@ from cinema.models import (
 class CinemaHallSerializer(serializers.ModelSerializer):
     class Meta:
         model = CinemaHall
-        fields = "__all__"
+        fields = (
+            "id",
+            "name",
+            "rows",
+            "seats_in_row",
+            "capacity"
+        )
 
 
 class GenreSerializer(serializers.ModelSerializer):
