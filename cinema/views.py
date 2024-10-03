@@ -21,7 +21,7 @@ from cinema.serializers import (
     ActorSerializer,
     CinemaHallSerializer,
     TicketSerializer,
-    GenreSerializer
+    GenreSerializer,
 )
 
 

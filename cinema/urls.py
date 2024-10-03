@@ -4,7 +4,7 @@ from cinema.views import (
     MovieViewSet,
     CinemaHallViewSet,
     MovieSessionViewSet,
-    GenreViewSet
+    GenreViewSet,
 )
 from rest_framework import routers
 
@@ -16,8 +16,6 @@ router.register("movies", MovieViewSet)
 router.register("cinema_halls", CinemaHallViewSet)
 
 
-urlpatterns = [
-    path("", include(router.urls))
-    ]
+urlpatterns = [path("", include(router.urls))]
 
 app_name = "cinema"
