@@ -77,6 +77,7 @@ class MovieListSerializer(MovieSerializer):
         read_only=True,
         slug_field="name"
     )
+
     actors = serializers.SlugRelatedField(
         many=True, read_only=True, slug_field="full_name"
     )
@@ -89,7 +90,11 @@ class TicketSerializer(serializers.ModelSerializer):
 
 
 class TicketListSerializer(serializers.ModelSerializer):
-    movie_info = serializers.CharField(source="movie.title", read_only=True)
+    movie_info = serializers.CharField(
+        source="movie.title",
+        read_only=True
+    )
+
     cinema_hall = serializers.IntegerField(
         source="cinema_hall.name",
         read_only=True
@@ -122,7 +127,11 @@ class MovieSessionRetrieveSerializer(MovieSessionSerializer):
 
 
 class MovieSessionListSerializer(MovieSessionSerializer):
-    movie_title = serializers.CharField(source="movie.title", read_only=True)
+    movie_title = serializers.CharField(
+        source="movie.title",
+        read_only=True
+    )
+
     cinema_hall_name = serializers.CharField(
         source="cinema_hall.name",
         read_only=True
