@@ -31,17 +31,17 @@ class GenreRetrieveSerializer(GenreSerializer):
 class ActorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actor
-        fields = ("id", "first_name", "last_name")
+        fields = ("id", "first_name", "last_name", "full_name")
 
 
 class ActorRetrieveSerializer(ActorSerializer):
     class Meta:
         model = Actor
-        fields = ("first_name", "last_name")
+        fields = ("full_name",)
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    actors = ActorRetrieveSerializer(many=True, read_only=True)
+    actors = ActorRetrieveSerializer(source="full_name", many=True, read_only=True)
 
     class Meta:
         model = Movie
@@ -53,7 +53,7 @@ class MovieSerializer(serializers.ModelSerializer):
             "genres",
             "actors",
         )
-        read_only_fields = ("id", "duration")
+        read_only_fields = ("id",)
 
 
 class MovieRetrieveSerializer(MovieSerializer):
@@ -67,9 +67,10 @@ class MovieListSerializer(MovieSerializer):
         read_only=True,
         slug_field="name"
     )
-    actors = ActorRetrieveSerializer(
+    actors = serializers.SlugRelatedField(
         many=True,
         read_only=True,
+        slug_field="full_name"
     )
 
 
